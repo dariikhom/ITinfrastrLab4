@@ -10,12 +10,6 @@ pipeline {
             }
         }
 
-        stage('Restore NuGet') {
-            steps {
-                bat 'nuget restore test_repos.sln'
-            }
-        }
-        
         stage('Build') {
             steps {
                 bat '"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe" test_repos.sln /t:Build /p:Configuration=Debug'
@@ -30,7 +24,7 @@ pipeline {
     }
 
     post {
-    always {
+        always {
             junit 'test_report.xml'
         }
     }
