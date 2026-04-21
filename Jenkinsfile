@@ -9,6 +9,12 @@ pipeline {
                     credentialsId: 'git-token'
             }
         }
+
+        stage('Restore NuGet') {
+            steps {
+                bat 'nuget restore test_repos.sln'
+            }
+        }
         
         stage('Build') {
             steps {
@@ -25,17 +31,7 @@ pipeline {
 
     post {
     always {
-            xunit(
-                tools: [
-                    GoogleTest(
-                        pattern: 'test_report.xml',
-                        skipNoTestFiles: false,
-                        failIfNotNew: false,
-                        deleteOutputFiles: true,
-                        stopProcessingIfError: true
-                    )
-                ]
-            )
+            junit 'test_report.xml'
         }
     }
 }
