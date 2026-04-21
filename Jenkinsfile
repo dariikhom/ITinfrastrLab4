@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/dariikhom/ITinfrastrLab4',
+                    url: 'https://github.com/dariikhom/ITinfrastrLab4.git',
                     credentialsId: 'git-token'
             }
         }
