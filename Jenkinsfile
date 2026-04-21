@@ -10,10 +10,16 @@ pipeline {
             }
         }
 
+        stage('Restore') {
+            steps {
+                bat '"C:\Users\darii\Downloads\nuget.exe" restore test_repos.sln'
+            }
+        }
+
         stage('Build') {
             steps {
-            bat '"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe" test_repos.sln /t:Build /p:Configuration=Debug /p:RestorePackagesConfig=true'
-        }
+                bat '"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe" test_repos.sln /t:Build /p:Configuration=Debug'
+            }
         }
 
         stage('Test') {
