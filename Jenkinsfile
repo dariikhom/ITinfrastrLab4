@@ -12,7 +12,7 @@ pipeline {
 
         stage('Restore') {
             steps {
-                bat '"C:\\Users\\darii\\Downloads\\nuget.exe" restore test_repos.sln'
+                bat '"C:\\Users\\darii\\Downloads\\nuget.exe" restore test_repos.sln -PackagesDirectory packages -Force'
             }
         }
 
