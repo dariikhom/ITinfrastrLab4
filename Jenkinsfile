@@ -12,8 +12,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat '"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe" test_repos.sln /t:Build /p:Configuration=Debug'
-            }
+            bat '"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe" test_repos.sln /t:Build /p:Configuration=Debug /p:RestorePackagesConfig=true'
+        }
         }
 
         stage('Test') {
